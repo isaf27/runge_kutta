@@ -125,3 +125,37 @@ std::vector<Vect> runge_kutta_4(
     }
     return result;
 }
+
+enum class Method {
+    One,
+    Two,
+    Three,
+    Four
+};
+
+template <typename Real, typename Vect>
+std::vector<Vect> runge_kutta(
+    Real x0,
+    Vect y0,
+    std::function<Vect(Real, Vect)> f,
+    Real step,
+    size_t l,
+    size_t r,
+    Method p = Method::Four
+) {
+    switch (p) {
+        case Method::One: {
+            return runge_kutta_1(x0, y0, f, step, l, r);
+        }
+        case Method::Two: {
+            return runge_kutta_2(x0, y0, f, step, l, r);
+        }
+        case Method::Three: {
+            return runge_kutta_3(x0, y0, f, step, l, r);
+        }
+        case Method::Four: {
+            return runge_kutta_4(x0, y0, f, step, l, r);
+        }
+    }
+    return {};
+}
