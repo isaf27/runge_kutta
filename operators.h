@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <ostream>
 
 template <size_t N, typename Real>
 std::ostream& operator<<(std::ostream& out, const std::array<Real, N>& vect) {
